@@ -27,7 +27,8 @@ def download_image_from_url(image_url: str) -> str:
     return image_name
 
 def count_matches(pattern: str, text: str, count=0) -> int:
-    matches = len(re.findall(pattern, text, flags=re.IGNORECASE))
+    full_pattern= r"\b" + pattern + r"\b"
+    matches = len(re.findall(full_pattern, text, flags=re.IGNORECASE))
     return matches
 
 def check_for_dolar_sign(text: str) -> bool:
