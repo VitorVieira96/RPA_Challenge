@@ -58,8 +58,10 @@ def format_date(news_date: str) -> str:
         raise f"Error on execution of format_date -> {e}"
 
 def date_limit(n_months: int) -> str:
-    if n_months in (0,1):
-        limit_date = datetime.datetime.today().replace(day=1)     
+    if n_months == 0:
+        limit_date = datetime.datetime.today()     
+    elif  n_months == 1:
+        limit_date = datetime.datetime.today().replace(day=1)
     else:
         limit_date = datetime.datetime.today().replace(day=1) - relativedelta(months =n_months)
     return limit_date  

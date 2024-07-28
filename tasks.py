@@ -69,17 +69,13 @@ class SeleniumScraper:
 
         dt_limit = date_limit(NUMBER_OF_MONTHS)
 
-        element_list = "//ps-promo[@class='promo promo-position-large promo-medium']"
-        
+        element_list = "//ps-promo[@class='promo promo-position-large promo-medium']"  
         title_xpath = "//h3/a[@class='link']"
-        #title_xpath = "//ps-promo[@class='promo promo-position-large promo-medium']//h3/a[@class='link']"
-        title_field = self.browser_lib.get_webelements(title_xpath)
+        #title_field = self.browser_lib.get_webelements(title_xpath)
         description_xpath = "//p[@class='promo-description']"
-        #description_xpath = "//ps-promo[@class='promo promo-position-large promo-medium']//p[@class='promo-description']"
-        description_field = self.browser_lib.get_webelements(description_xpath)
+        #description_field = self.browser_lib.get_webelements(description_xpath)
         date_xpath = "//p[contains(@class, 'promo-timestamp')]"
-        #date_xpath = "//ps-promo[@class='promo promo-position-large promo-medium']//p[contains(@class, 'promo-timestamp')]"
-        date_field = self.browser_lib.get_webelements(date_xpath)
+        #date_field = self.browser_lib.get_webelements(date_xpath)
 
         while(True):
             news_list_elements = self.browser_lib.get_webelements(element_list)
@@ -100,7 +96,7 @@ class SeleniumScraper:
                     description,
                     formated_date.strftime("%B %d, %Y"),
                     image,
-                    count_matches( SEARCH_PHRASE, title + description),
+                    count_matches( SEARCH_PHRASE, title +" "+ description),
                     check_for_dolar_sign(title + description)
                     ]
                 )
@@ -120,8 +116,7 @@ class SeleniumScraper:
         try:
             create_image_folder()
             self.open_website(url=URL)
-            self.click_next_page()
-            print("Website open")
+            print("Website opened")
             self.begin_search(search_phrase=SEARCH_PHRASE)
             print("Search done")
             self.sort_newest_news()

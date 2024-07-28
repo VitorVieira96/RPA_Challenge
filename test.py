@@ -62,17 +62,12 @@ class TestDolarSign(unittest.TestCase):
         expected = datetime.datetime(2024, 7, 15)
         self.assertEqual(result, expected.strftime("%m/%d/%Y"))    
 
-    def test_format_date_limit(self):
-        result = date_limit(0)
-        expected = datetime.datetime.today().replace(day=1)
-        self.assertEqual(result.strftime("%m/%d/%Y"), expected.strftime("%m/%d/%Y"))    
-
 
     #Date_limit
-    def test_format_date_limit0(self):
+    def test_format_date_limit(self):
         result = date_limit(0)
-        expected = datetime.datetime.today().replace(day=1)
-        self.assertEqual(result, expected)   
+        expected = datetime.datetime.today()
+        self.assertEqual(result.strftime("%m/%d/%Y"), expected.strftime("%m/%d/%Y"))    
 
     def test_format_date_limit1(self):
         result = date_limit(1)
@@ -91,21 +86,29 @@ class TestDolarSign(unittest.TestCase):
         self.assertEqual(result, expected)   
 
     def test_count_matches2(self):
+        result = count_matches("business","This is a Business article")
+        expected = 1
+        self.assertEqual(result, expected)   
+
+    def test_count_matches3(self):
         result = count_matches("Business","This is a Busines article")
         expected = 0
         self.assertEqual(result, expected)   
 
-    def test_count_matches3(self):
+    def test_count_matches4(self):
         result = count_matches("Business","ThisisaBusinessarticle")
         expected = 0
         self.assertEqual(result, expected)   
 
-    def test_count_matches3(self):
+    def test_count_matches5(self):
         result = count_matches("Business","This is a Business Business article")
         expected = 2
         self.assertEqual(result, expected)   
 
-
+    def test_count_matches6(self):
+        result = count_matches("Business","This is a business Business article")
+        expected = 2
+        self.assertEqual(result, expected)   
 
 
 

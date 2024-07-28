@@ -1,5 +1,6 @@
 output/
 images/
+*.xlsx
 venv/
 temp/
 .rpa/
@@ -12,7 +13,5 @@ temp/
 .DS_Store
 *.pyc
 *.zip
-*/work-items-out/*
-testrun/*
 .~lock*
 *.pkl
